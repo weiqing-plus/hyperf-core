@@ -29,7 +29,9 @@ class ConfigProvider
                 ],
             ],
             'middlewares' => [
-                \Hyperf\Validation\Middleware\ValidationMiddleware::class,
+                'http' => [
+                    \Hyperf\Validation\Middleware\ValidationMiddleware::class,
+                ],
             ],
             'exceptions' => [
                 'handler' => [
