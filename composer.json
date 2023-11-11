@@ -27,7 +27,8 @@
         "hyperf/http-server": "^3.0",
         "hyperf/snowflake": "^3.0",
         "hyperf/validation": "^3.0",
-        "ramsey/uuid": "^4.7"
+        "ramsey/uuid": "^4.7",
+        "xmo/jwt-auth": "^0.6.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",

@@ -37,6 +37,7 @@ class ConfigProvider
                 'handler' => [
                     'http' => [
                         \Weiqing\HyperfCore\Exception\Handler\ValidationExceptionHandler::class,
+                        \Weiqing\HyperfCore\Exception\Handler\TokenExceptionHandler::class,
                     ],
                 ],
             ],
