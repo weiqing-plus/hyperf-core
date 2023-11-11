@@ -29,12 +29,7 @@ trait ControllerTrait
     #[Inject]
     protected Response $response;
 
-    /**
-     * @param array $data
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
+
     public function success(array|object|string $msgOrData = '', array|object $data = [], int $code = 200): ResponseInterface
     {
         if (is_string($msgOrData) || is_null($msgOrData)) {

@@ -31,6 +31,13 @@ class ConfigProvider
             'middlewares' => [
                 \Hyperf\Validation\Middleware\ValidationMiddleware::class,
             ],
+            'exceptions' => [
+                'handler' => [
+                    'http' => [
+                        \Weiqing\HyperfCore\Exception\Handler\ValidationExceptionHandler::class,
+                    ],
+                ],
+            ],
         ];
     }
 }
