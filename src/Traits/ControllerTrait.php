@@ -13,6 +13,7 @@ namespace Weiqing\HyperfCore\Traits;
  */
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
+use Hyperf\Validation\ValidationException;
 use Hyperf\Validation\ValidatorFactory;
 use Psr\Container\ContainerInterface;
 use Weiqing\HyperfCore\Response;
@@ -78,7 +79,7 @@ trait ControllerTrait
             $customAttributes
         );
         if ($validator->fails()) {
-            $this->error($validator->errors()->first(), 400);
+            throw new ValidationException($validator);
         }
         return $validator->validated();
     }
