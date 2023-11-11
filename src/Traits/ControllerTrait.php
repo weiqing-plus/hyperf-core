@@ -13,6 +13,7 @@ namespace Weiqing\HyperfCore\Traits;
  */
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
+use Hyperf\Validation\ValidatorFactory;
 use Psr\Container\ContainerInterface;
 use Weiqing\HyperfCore\Response;
 use Psr\Http\Message\ResponseInterface;
@@ -68,5 +69,22 @@ trait ControllerTrait
     public function _download(string $filePath, string $name = ''): ResponseInterface
     {
         return $this->response->download($filePath, $name);
+    }
+
+    /**
+     * 验证参数.
+     */
+    public function validate(array $rules, array $messages = [], array $customAttributes = []): array
+    {
+        $validator = $this->container->get(ValidatorFactory::class)->make(
+            $this->request->all(),
+            $rules,
+            $messages,
+            $customAttributes
+        );
+        if ($validator->fails()) {
+            $this->error($validator->errors()->first(), 400);
+        }
+        return $validator->validated();
     }
 }

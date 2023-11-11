@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
 namespace Weiqing\HyperfCore;
 
 class ConfigProvider
@@ -26,6 +27,9 @@ class ConfigProvider
                         __DIR__,
                     ],
                 ],
+            ],
+            'middlewares' => [
+                \Hyperf\Validation\Middleware\ValidationMiddleware::class,
             ],
         ];
     }
