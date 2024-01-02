@@ -11,8 +11,11 @@ namespace Weiqing\HyperfCore\Traits;
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
+use Hyperf\Contract\ValidatorInterface;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
+use Hyperf\Validation\Contract\ValidatorFactoryInterface;
 use Hyperf\Validation\ValidationException;
 use Hyperf\Validation\ValidatorFactory;
 use Psr\Container\ContainerInterface;
@@ -72,6 +75,8 @@ trait ControllerTrait
      */
     public function validate(array $rules, array $messages = [], array $customAttributes = []): array
     {
+
+        /* @var ValidatorInterface $validator */
         $validator = $this->container->get(ValidatorFactory::class)->make(
             $this->request->all(),
             $rules,
@@ -81,6 +86,6 @@ trait ControllerTrait
         if ($validator->fails()) {
             throw new ValidationException($validator);
         }
-        return $validator->validated();
+        return $this->request->all();
     }
 }
