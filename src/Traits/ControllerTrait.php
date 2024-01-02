@@ -18,7 +18,9 @@ use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\Validation\Contract\ValidatorFactoryInterface;
 use Hyperf\Validation\ValidationException;
 use Hyperf\Validation\ValidatorFactory;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Weiqing\HyperfCore\Response;
 use Psr\Http\Message\ResponseInterface;
 
@@ -45,10 +47,7 @@ trait ControllerTrait
         return $this->response->success(null, $data, $code);
     }
 
-    /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
+
     public function error(string $message = '', int $code = 500, array $data = []): ResponseInterface
     {
         return $this->response->error($message, $code, $data);

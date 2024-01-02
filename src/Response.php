@@ -18,10 +18,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class Response extends \Hyperf\HttpServer\Response
 {
-    /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
     public function success(string $message = null, array|object $data = [], int $code = 200): ResponseInterface
     {
         $format = [
@@ -37,10 +33,6 @@ class Response extends \Hyperf\HttpServer\Response
             ->withBody(new SwooleStream($format));
     }
 
-    /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
     public function error(string $message = '', int $code = 500, array $data = []): ResponseInterface
     {
         $format = [
