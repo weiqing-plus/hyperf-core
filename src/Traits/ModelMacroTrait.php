@@ -12,21 +12,19 @@ declare(strict_types=1);
 
 namespace Weiqing\HyperfCore\Traits;
 
+use Hyperf\Context\ApplicationContext;
 use Hyperf\Database\Model\Builder;
-use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
 
 trait ModelMacroTrait
 {
 
-    #[Inject]
-    private RequestInterface $request;
-
     private function registerBase()
     {
         Builder::macro('getPageList', function ($perPage = null) {
+            $request = ApplicationContext::getContainer()->get(RequestInterface::class);
             // 从request中获取分页参数
-            $perPage ?: (int) $this->request->input('pageSize', 1);
+            $perPage ?: (int) $request->input('pageSize', 1);
             /* @var Builder $this */
             return $this->paginate($perPage);
         });
