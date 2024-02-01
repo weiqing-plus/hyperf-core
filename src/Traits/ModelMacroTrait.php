@@ -19,12 +19,12 @@ use Hyperf\HttpServer\Contract\RequestInterface;
 trait ModelMacroTrait
 {
 
-    private function registerBase()
+    private function registerBase(): void
     {
         Builder::macro('getPageList', function ($perPage = null) {
             $request = ApplicationContext::getContainer()->get(RequestInterface::class);
             // 从request中获取分页参数
-            $perPage ?: (int) $request->input('pageSize', 1);
+            $perPage ?: (int) $request->input('pageSize', 20);
             /* @var Builder $this */
             return $this->paginate($perPage);
         });
